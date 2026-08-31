@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #2563eb;
+  --color-deep-blue: #1d4ed8;
+  --color-navy: #0f172a;
+  --color-light-blue: #eff6ff;
+  --color-bg: #f8fafc;
+  --color-white: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+
+  --color-verified: #0d9488;
+  --color-verified-bg: #f0fdfa;
+  --color-flag: #b45309;
+  --color-flag-bg: #fffbeb;
+  --color-line: #e2e8f0;
+
+  --font-display: var(--font-jakarta);
+  --font-body: var(--font-inter);
+  --font-data: var(--font-plex-mono);
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-deep-blue: var(--color-deep-blue);
+  --color-navy: var(--color-navy);
+  --color-light-blue: var(--color-light-blue);
+  --color-bg: var(--color-bg);
+  --color-white: var(--color-white);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-verified: var(--color-verified);
+  --color-verified-bg: var(--color-verified-bg);
+  --color-flag: var(--color-flag);
+  --color-flag-bg: var(--color-flag-bg);
+  --color-line: var(--color-line);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-data: var(--font-data);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Chain-of-custody link line: connects an AI claim to its source excerpt */
+.trace-line {
+  position: relative;
+}
+.trace-line::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), transparent);
+}
+
+/* Verification stamp */
+.stamp {
+  border: 1.5px solid var(--color-verified);
+  color: var(--color-verified);
+  transform: rotate(-2deg);
+  letter-spacing: 0.08em;
+}
+
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.caret {
+  animation: blink-caret 0.9s step-end infinite;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: rise 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret, .animate-rise { animation: none; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.paper-edge {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--color-line) 0,
+    var(--color-line) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+}
